@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="htmlhead">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../static/css/styles.css" th:href="@{/css/styles.css}" />
+
+<title>KysMaster</title>
+</head>
+
+<body class="background1">
+	<div>
+		<div class="maincontent">
+			<div class="d-flex justify-content-center">
+				<a th:href="@{/}">
+				<img th:src="@{/img/logo.png}" alt="logo" />
+				</a>
+			</div>
+			<br />
+			<h1 style="background-color: black; color: white;">LET'S GO!</h1>
+			<br />
+			<h3
+				style="background-color: black; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;" th:text="${'QUESTION #'+(winCount+1)}"></h3>
+				<br>
+				<h3
+				style="background-color: black; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;" th:text="${'CATEGORY: '+question.category.name}"></h3>
+			<br>
+			
+			<h1 th:text="${question.title}"></h1>
+			<div class="options">
+			<table class="table">
+			<tr th:each="answer:${answers}">
+			<td>
+			<form th:action="@{/nextquestion}" action="#"
+				method="post">
+			<input type="hidden" name="quizKey" th:value="${quizKey}"/>
+			<input type="hidden" name="winCount" th:value="${winCount}"/>
+			<input type="hidden" name="correct" th:value="${answer.correct}"/>
+			<button class="btn btn-danger btn-block" type="submit" th:text="${answer.content}"></button>
+			</form>
+			</td>
+			</tr>
+			</table>
+			</div>
+
+		
+
+		</div>
+	</div>
+
+
+</body>
+
+</html>

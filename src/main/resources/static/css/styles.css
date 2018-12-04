@@ -1,0 +1,51 @@
+.background1{
+	background-color:grey;
+	padding-bottom:20px;
+	padding-top:20px;
+}
+
+.background2{
+	background-color:#d8d8d8;
+	padding-bottom:20px;
+}
+
+.maincontent{
+	padding-top:30px;
+	background-color:white;
+	width:60%;
+	margin:auto;
+	text-align:center;
+	padding-bottom:30px;
+	border-radius:20px;
+	box-shadow: 5px 12px;
+}
+
+.btn-custom{
+	width:180px;
+	height:180px;
+	font-size:50px;
+	background-color:darkblue;
+	border-radius:20px;
+}
+
+.btn-custom2{
+	width:180px;
+	height:180px;
+	font-size:40px;
+	background-color:darkred;
+	border-radius:20px;
+}
+
+.options{
+	max-width:400px;
+	margin:auto;
+}
+
+.result{
+	background-color:red;
+	color:white;
+	border-radius:20px;
+	font-size:30px;
+	max-width:140px;
+	margin:auto;
+}
