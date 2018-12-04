@@ -1,0 +1,20 @@
+@Component
+	public class CommandLineAppStartupRunner implements CommandLineRunner {
+	    public void run(String...args) throws Exception {
+	       Category nat = new Category("Nature");
+	       categoryRepository.save(nat);
+	       Category pol = new Category("Politics");
+	       categoryRepository.save(pol);
+	       Category ppl = new Category("People");
+	       categoryRepository.save(ppl);
+	       Category tch = new Category("Technology");
+	       categoryRepository.save(tch);
+	       Category spr = new Category("Sports");
+	       categoryRepository.save(spr);
+	       Category tvs = new Category("Film And Television");
+	       categoryRepository.save(tvs);
+	       Category oth = new Category("Other");
+	       categoryRepository.save(oth);
+	    }
+
+	}
