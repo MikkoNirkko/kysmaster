@@ -33,38 +33,68 @@
 	<div>
 		<div class="maincontent">
 			<div class="d-flex justify-content-center">
-				<a th:href="@{/}">
-				<img th:src="@{/img/logo.png}" alt="logo" />
+				<a th:href="@{/}"> <img th:src="@{/img/logo.png}" alt="logo" />
 				</a>
 			</div>
 			<br />
-			<h1 style="background-color: black; color: white;">LET'S GO!</h1>
-			<br />
-			<h3
-				style="background-color: black; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;" th:text="${'QUESTION #'+(winCount+1)}"></h3>
-				<br>
-				<h3
-				style="background-color: black; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;" th:text="${'CATEGORY: '+question.category.name}"></h3>
-			<br>
-			
-			<h1 th:text="${question.title}"></h1>
-			<div class="options">
-			<table class="table">
-			<tr th:each="answer:${answers}">
-			<td>
-			<form th:action="@{/nextquestion}" action="#"
-				method="post">
-			<input type="hidden" name="quizKey" th:value="${quizKey}"/>
-			<input type="hidden" name="winCount" th:value="${winCount}"/>
-			<input type="hidden" name="correct" th:value="${answer.correct}"/>
-			<button class="btn btn-danger btn-block" type="submit" th:text="${answer.content}"></button>
-			</form>
-			</td>
-			</tr>
-			</table>
+			<div th:if="${reported==0}" style="background-color: black; color: white;">
+				<h1>LET'S GO!</h1>
 			</div>
+			<div th:if="${reported==1}" style="background-color: black; color: white;" class="animated2 tada">
+				<h1>THANK YOU FOR YOUR REPORT!!!</h1>
+			</div>
+			<br />
+			<div class="d-flex justify-content-center">
+				<h3
+					style="background-color: black; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;"
+					th:text="${'QUESTION #'+(winCount+1)}"></h3>
+				<h3
+					style="background-color: black; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;"
+					th:text="${'CATEGORY: '+question.category.name}"></h3>
+			</div>
+			<br>
 
-		
+			<h1 class="animated shake"
+				style="font-weight: bold; font-size: 40px;"
+				th:text="${question.title}"></h1>
+			<div class="options">
+				<table class="table">
+					<tr th:each="answer:${answers}">
+						<td>
+							<form th:action="@{/nextquestion}" action="#" method="post">
+								<input type="hidden" name="quizKey" th:value="${quizKey}" /> <input
+									type="hidden" name="winCount" th:value="${winCount}" /> <input
+									type="hidden" name="correct" th:value="${answer.correct}" />
+								<button class="btn btn-danger btn-block btn-answer"
+									type="submit" th:text="${answer.content}"></button>
+							</form>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<br>
+			<hr>
+			<a class="btn btn-report" data-toggle="collapse"
+				href="#collapseReport" role="button" aria-expanded="false"
+				aria-controls="collapseReport">REPORT BAD QUESTION!</a>
+
+			<div class="collapse" id="collapseReport">
+				<div class="card card-body">
+					<form th:action="@{/report}" action="#" method="post">
+						<input type="hidden" name="quizKey" th:value="${quizKey}" /> <input
+							type="hidden" name="winCount" th:value="${winCount}" /> <input
+							type="hidden" name="questionId" th:value="${question.questionid}" />
+							<label for="sel1">Please Choose a Reason:</label> 
+							<select class="form-control" id="sel1" name="reason" th:required="required">
+						<option value="1" name="reason">It's Offensive!</option>
+						<option value="2" name="reason">It's Impossible!</option>
+						<option value="3" name="reason">It's Too Obvious!</option>
+					</select>
+						<button class="btn btn-danger btn-block btn-answer" type="submit">SUBMIT</button>
+					</form>
+
+				</div>
+			</div>
 
 		</div>
 	</div>

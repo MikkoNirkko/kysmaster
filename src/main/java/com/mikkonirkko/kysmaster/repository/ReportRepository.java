@@ -7,10 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.mikkonirkko.kysmaster.model.Category;
 import com.mikkonirkko.kysmaster.model.Question;
+import com.mikkonirkko.kysmaster.model.Report;
 
 @Repository
-public interface QuestionRepository extends CrudRepository<Question, Long>{
-	List<Question> findByCategory(Category category);
-	List<Question> findAll();
-	Question findByQuestionid(Long questionid);
+public interface ReportRepository extends CrudRepository<Report, Long>{
+	Report findByReportId(Long reportId);
 }

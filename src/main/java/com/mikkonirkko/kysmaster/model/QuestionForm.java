@@ -8,7 +8,6 @@ public class QuestionForm {
 	private String falseAnswer1;
 	private String falseAnswer2;
 	private String falseAnswer3;
-	private String sources;
 	
 	public QuestionForm() {
 		this.categoryId=null;
@@ -17,17 +16,15 @@ public class QuestionForm {
 		this.falseAnswer1="";
 		this.falseAnswer2="";
 		this.falseAnswer3="";
-		this.sources="";
 	}
 	
-	public QuestionForm(Long categoryId,String title, String correctAnswer, String falseAnswer1, String falseAnswer2, String falseAnswer3, String sources) {
+	public QuestionForm(Long categoryId,String title, String correctAnswer, String falseAnswer1, String falseAnswer2, String falseAnswer3) {
 		this.categoryId=categoryId;
 		this.title=title;
 		this.correctAnswer=correctAnswer;
 		this.falseAnswer1=falseAnswer1;
 		this.falseAnswer2=falseAnswer2;
 		this.falseAnswer3=falseAnswer3;
-		this.sources=sources;
 	}
 
 	
@@ -80,20 +77,15 @@ public class QuestionForm {
 		this.falseAnswer3 = falseAnswer3;
 	}
 
-	public String getSources() {
-		return sources;
-	}
-
-	public void setSources(String sources) {
-		this.sources = sources;
-	}
-
 	@Override
 	public String toString() {
 		return "QuestionForm [categoryId=" + categoryId + ", title=" + title + ", correctAnswer=" + correctAnswer
 				+ ", falseAnswer1=" + falseAnswer1 + ", falseAnswer2=" + falseAnswer2 + ", falseAnswer3=" + falseAnswer3
-				+ ", sources=" + sources + "]";
+				+ "]";
 	}
+
+
+	
 
 	
 	

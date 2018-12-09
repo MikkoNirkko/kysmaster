@@ -33,49 +33,45 @@
 	<div>
 		<div class="maincontent">
 			<div class="d-flex justify-content-center">
-			<a th:href="@{/}">
 				<img th:src="@{/img/logo.png}" alt="logo" />
-				</a>
 			</div>
 			<br />
 			<div style="background-color: black; color: white;">
-			<h1 class="animated shake" >ADD A NEW QUESTION!</h1>
+			<h1 class="animated shake" >WELCOME!</h1>
 			</div>
 			<br />
 			<h3
-				style="background-color: grey; color: white; border-radius: 10px; width: 100%; max-width: 400px; margin: auto;">Please
-				enter the following information:</h3>
+				style="background-color: grey; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;">Please
+				Select:</h3>
 			<br>
-			<form th:action="@{/savequestion}" th:object="${qform}" action="#"
-				method="post">
-				<div class="form-group" style="width:30%; margin:auto;">
-					<label for="sel1">Select a category:</label> <select class="form-control" th:field="*{categoryId}"
-						id="sel1">
-						<option th:each="category:${categories}" th:text="${category.name}" th:value="${category.categoryId}" ></option>
-					</select>
-				</div>
-				<hr>
-				<h3>Your question:</h3>
-				<input th:required="required" type="text" th:field="*{title}">
-				<hr>
-				<h3>The correct answer to your question:</h3>
-				<input th:required="required" type="text" th:field="*{correctAnswer}">
-				<hr>
-				<h3>False answer #1:</h3>
-				<input th:required="required" type="text" th:field="*{falseAnswer1}">
-				<hr>
-				<h3>False answer #2:</h3>
-				<input th:required="required" type="text" th:field="*{falseAnswer2}">
-				<hr>
-				<h3>False answer #3:</h3>
-				<input th:required="required" type="text" th:field="*{falseAnswer3}">		
-				<hr>
-				<button class="btn btn-custom btn-info" type="submit">SUBMIT</button>
 
-			</form>
+
+
+
+			<div class="container" style="max-width:800px;">
+						<form th:action="@{/play/}" method="POST">
+							<input type="hidden" name="winCount" th:value="${0}" />
+							<button class="btn btn-vali2 btn-danger btn-block" type="submit">PLAY</button>
+						</form>
+						<hr>
+						<form th:action="@{/new/}" method="POST">
+							<button class="btn btn-vali btn-danger btn-block" type="submit">
+								CREATE QUESTION
+							</button>
+						</form>
+						<hr>
+						<form th:action="@{/leaderboard/}" method="POST">
+							<button class="btn btn-vali2 btn-danger btn-block" type="submit">
+								LEADERBOARD
+							</button>
+						</form>
+			</div>
 
 		</div>
 	</div>
+	<form th:action="@{/login}" method="POST">
+	<input type="submit" value="Admin Login"/>
+	</form>
 
 
 </body>

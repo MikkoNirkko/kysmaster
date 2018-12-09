@@ -24,8 +24,6 @@ public class Question {
 	@NotNull
 	private String title;
 	
-	@Column(name = "question_sources")
-	private String sources;
 	
 	
 	@OneToOne
@@ -35,13 +33,11 @@ public class Question {
 	public Question() {
 		this.title="";
 		this.category=null;
-		this.sources = "";
 	}
 	
-	public Question(String title, Category category, String sources) {
+	public Question(String title, Category category) {
 		this.title = title;
 		this.category = category;
-		this.sources = sources;
 	}
 
 	public Long getQuestionid() {
@@ -67,26 +63,11 @@ public class Question {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
-	
-
-	public String getSources() {
-		return sources;
-	}
-
-	public void setSources(String sources) {
-		this.sources = sources;
-	}
 
 	@Override
 	public String toString() {
-		return "Question [questionid=" + questionid + ", title=" + title + ", sources=" + sources + ", category="
-				+ category + "]";
+		return "Question [questionid=" + questionid + ", title=" + title + ", category=" + category + "]";
 	}
-
-	
-
-	
 	
 	
 	

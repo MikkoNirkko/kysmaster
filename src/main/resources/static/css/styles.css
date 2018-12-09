@@ -28,6 +28,26 @@
 	border-radius:20px;
 }
 
+.btn-vali{
+	height:150px;
+	font-size:4.5vw;
+	background-color:black;
+}
+
+.btn-vali2{
+	height:150px;
+	font-size:4.5vw;
+	background-color:darkred;
+}
+
+.resultbox{
+	margin:auto;
+	max-width:30vw;
+	color:white;
+	background-color:darkred;
+	border-radius:20px;
+}
+
 .btn-custom2{
 	width:180px;
 	height:180px;
@@ -37,15 +57,120 @@
 }
 
 .options{
-	max-width:400px;
+	max-width:500px;
 	margin:auto;
+	font-size:30px;
+}
+
+.btn-answer{
+	font-size:30px;
+	font-weight:bold;
 }
 
 .result{
-	background-color:red;
+	background-color:black;
 	color:white;
-	border-radius:20px;
-	font-size:30px;
-	max-width:140px;
+	font-size:50px;
 	margin:auto;
+}
+
+.btn-report{
+	background-color:black;
+	width:40vw;
+	color:white;
+	font-size:35px;
+}
+
+/* EVERYTHING BELOW BY: https://bootsnipp.com/snippets/92plm AND SLIGHTLY MODIFIED BY MYSELF*/
+
+.animated {
+    -webkit-animation-duration: 6s;
+    animation-duration: 6s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation: mymove 10s infinite;
+}
+
+.animated2 {
+    -webkit-animation-duration: 4s;
+    animation-duration: 4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation: mymove 5s;
+}
+
+/*SHAKE*/
+
+.shake {
+    -webkit-animation-name: shake;
+    animation-name: shake;
+}
+
+@keyframes shake{
+0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+}
+
+20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+}
+}
+
+
+/*TADA*/
+
+.tada {
+    -webkit-animation-name: tada;
+    animation-name: tada;
+}
+
+
+
+@keyframes tada{
+    
+    0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+10%, 20% {
+    -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+}
+30%, 50%, 70%, 90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+}
+40%, 60%, 80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+}
+100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+}
+
+
+/*ZOOM IN*/
+
+.zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+}
+
+@keyframes zoomIn{
+0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+}
+50% {
+    opacity: 1;
+}
 }

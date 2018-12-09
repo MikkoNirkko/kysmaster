@@ -1,5 +1,8 @@
 package com.mikkonirkko.kysmaster.control;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mikkonirkko.kysmaster.model.Question;
 import com.mikkonirkko.kysmaster.model.QuestionForm;
+import com.mikkonirkko.kysmaster.model.Result;
 import com.mikkonirkko.kysmaster.repository.CategoryRepository;
 import com.mikkonirkko.kysmaster.repository.QuestionRepository;
+import com.mikkonirkko.kysmaster.repository.ResultRepository;
 import com.mikkonirkko.kysmaster.service.AnswerService;
 import com.mikkonirkko.kysmaster.service.QuestionService;
+import com.mikkonirkko.kysmaster.service.ResultService;
 
 @Controller
 public class DefaultController {
@@ -26,10 +32,16 @@ public class DefaultController {
 
 	@Autowired
 	private AnswerService answerService;
+	
+	@Autowired
+	private ResultRepository resultRepository;
 
 	@Autowired
 	private QuestionService questionService;
-
+	
+	@Autowired
+	private ResultService resultService;
+	
 	@RequestMapping("/")
 	public String index(HttpServletRequest request) {
 		int idx = (int) (Math.random() * 1000000);
@@ -44,13 +56,24 @@ public class DefaultController {
 		model.addAttribute("categories", categoryRepository.findAll());
 		return "addquestion";
 	}
+	
+	@RequestMapping("/login/")
+	public String adminLogin(Model model) {
+		return "login";
+	}
+	
+	@RequestMapping("/leaderboard")
+	public String leaderboard(Model model) {
+		List<Result> results = (List<Result>) resultRepository.findAll();
+		List<Result> top10 = resultService.pickTen(results);
+		model.addAttribute("results", top10);
+		return "leaderboard";
+	}
 
 	@RequestMapping("/savequestion")
 	public String saveQuestion(QuestionForm qform) {
-		Question q = new Question(qform.getTitle(), categoryRepository.findByCategoryId(qform.getCategoryId()),
-				qform.getSources());
+		Question q = new Question(qform.getTitle(), categoryRepository.findByCategoryId(qform.getCategoryId()));
 		questionRepository.save(q);
-		System.out.println(q);
 		answerService.SaveAnswers(q.getQuestionid(), qform.getCorrectAnswer(), qform.getFalseAnswer1(),
 				qform.getFalseAnswer2(), qform.getFalseAnswer3());
 		return "redirect:/";
@@ -66,6 +89,7 @@ public class DefaultController {
 		model.addAttribute("answers", answerService.fetchAnswers(q.getQuestionid()));
 		model.addAttribute("winCount", winCount);
 		model.addAttribute("quizKey", quizKey);
+		model.addAttribute("reported", 0);
 		request.getSession().setAttribute("active", 1);
 		return "game";
 	}
@@ -85,6 +109,7 @@ public class DefaultController {
 				model.addAttribute("answers", answerService.fetchAnswers(q.getQuestionid()));
 				model.addAttribute("winCount", winCount);
 				model.addAttribute("quizKey", quizKey);
+				model.addAttribute("reported", 0);
 				return "game";
 			} else {
 				model.addAttribute("winCount", winCount);
@@ -95,5 +120,28 @@ public class DefaultController {
 			return "redirect:/";
 		}
 	}
+	
+	@RequestMapping("/report")
+	public String report(Model model, @RequestParam("winCount") Long winCount, @RequestParam("quizKey")Long quizKey,@RequestParam("reason") Long reason,@RequestParam("questionId") Long questionId,
+			HttpServletRequest request) {
+				questionService.report(reason, questionId);
+				Question q = questionService.getRandomQuestion();
+				model.addAttribute("question", q);
+				model.addAttribute("answers", answerService.fetchAnswers(q.getQuestionid()));
+				model.addAttribute("winCount", winCount);
+				model.addAttribute("quizKey", quizKey);
+				model.addAttribute("reported", 1);
+				return "game";
+	}
+	
+	@RequestMapping("/submit")
+	public String submit(@RequestParam("name") String name, @RequestParam("winCount") Long winCount) {
+		Date cur = new Date();
+		Result res = new Result(name, winCount, cur);
+		resultRepository.save(res);
+		return "redirect:/leaderboard";
+	}
+	
+	
 
 }

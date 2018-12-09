@@ -36,7 +36,9 @@
 				<img th:src="@{/img/logo.png}" alt="logo" />
 			</div>
 			<br />
-			<h1 style="background-color: black; color: white;">WELCOME!</h1>
+			<div style="background-color: black; color: white;">
+			<h1 class="animated2 zoomIn" >WELCOME!</h1>
+			</div>
 			<br />
 			<h3
 				style="background-color: grey; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;">Please
@@ -47,27 +49,29 @@
 
 
 			<div class="container" style="max-width:800px;">
-				<div class="row">
-					<div class="col-sm">
 						<form th:action="@{/play/}" method="POST">
 							<input type="hidden" name="winCount" th:value="${0}" />
-							<button class="btn btn-custom btn-info" type="submit">PLAY</button>
+							<button class="btn btn-vali2 btn-danger btn-block" type="submit">PLAY</button>
 						</form>
-					</div>
-
-					<div class="col-sm">
+						<hr>
 						<form th:action="@{/new/}" method="POST">
-							<button class="btn btn-custom2 btn-danger" type="submit">
-								<p>CREATE</p>
-								<p>QUESTION</p>
+							<button class="btn btn-vali btn-danger btn-block" type="submit">
+								CREATE QUESTION
 							</button>
 						</form>
-					</div>
-				</div>
+						<hr>
+						<form th:action="@{/leaderboard/}" method="POST">
+							<button class="btn btn-vali2 btn-danger btn-block" type="submit">
+								LEADERBOARD
+							</button>
+						</form>
 			</div>
 
 		</div>
 	</div>
+	<form th:action="@{/login}" method="POST">
+	<input type="submit" value="Admin Login"/>
+	</form>
 
 
 </body>

@@ -39,40 +39,38 @@
 			</div>
 			<br />
 			<div style="background-color: black; color: white;">
-			<h1 class="animated shake" >ADD A NEW QUESTION!</h1>
+			<h1 class="animated shake" >LEADERBOARD!</h1>
 			</div>
 			<br />
 			<h3
-				style="background-color: grey; color: white; border-radius: 10px; width: 100%; max-width: 400px; margin: auto;">Please
-				enter the following information:</h3>
+				style="background-color: grey; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;">TOP 10:</h3>
 			<br>
-			<form th:action="@{/savequestion}" th:object="${qform}" action="#"
-				method="post">
-				<div class="form-group" style="width:30%; margin:auto;">
-					<label for="sel1">Select a category:</label> <select class="form-control" th:field="*{categoryId}"
-						id="sel1">
-						<option th:each="category:${categories}" th:text="${category.name}" th:value="${category.categoryId}" ></option>
-					</select>
-				</div>
-				<hr>
-				<h3>Your question:</h3>
-				<input th:required="required" type="text" th:field="*{title}">
-				<hr>
-				<h3>The correct answer to your question:</h3>
-				<input th:required="required" type="text" th:field="*{correctAnswer}">
-				<hr>
-				<h3>False answer #1:</h3>
-				<input th:required="required" type="text" th:field="*{falseAnswer1}">
-				<hr>
-				<h3>False answer #2:</h3>
-				<input th:required="required" type="text" th:field="*{falseAnswer2}">
-				<hr>
-				<h3>False answer #3:</h3>
-				<input th:required="required" type="text" th:field="*{falseAnswer3}">		
-				<hr>
-				<button class="btn btn-custom btn-info" type="submit">SUBMIT</button>
 
-			</form>
+
+
+
+			<div class="container" style="max-width:800px;">
+			
+			<table class="table">
+			<thead>
+			<th></th>
+			<th>NAME</th>
+			<th>SCORE</th>
+			<th>DATE</th>
+			</thead>
+			<tbody>
+			<tr th:each="result, iStat:${results}">
+			<td th:text="${iStat.index+1+'.'}"></td>
+			<td th:text="${result.name}"></td>
+			<td th:text="${result.score}"></td>	
+			<td th:text="${result.date}"></td>	
+			</tr>
+			</tbody>
+			
+			</table>
+			
+			
+			</div>
 
 		</div>
 	</div>
