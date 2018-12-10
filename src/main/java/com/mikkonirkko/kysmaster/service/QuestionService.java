@@ -1,5 +1,6 @@
 package com.mikkonirkko.kysmaster.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,10 @@ public class QuestionService {
 	
 	public void report(Long reason, Long questionId) {
 		Question question = questionRepository.findByQuestionid(questionId);
-		Report rep = new Report(question, reason);
+		Date date = new Date();
+		Boolean falseb = new Boolean(false);
+		Report rep = new Report(question, reason, falseb, date);
 		reportRepository.save(rep);
+		System.out.println(rep);
 	}
 }

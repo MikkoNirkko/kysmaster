@@ -1,0 +1,123 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="htmlhead">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../static/css/styles.css" th:href="@{/css/styles.css}" />
+
+<title>KysMaster</title>
+</head>
+
+<body class="background1">
+	<div>
+		<div class="maincontent">
+			<div class="d-flex justify-content-center">
+				<img th:src="@{/img/logo.png}" alt="logo" />
+			</div>
+			<br />
+			<div style="background-color: black; color: white;">
+				<h1 class="animated2 zoomIn">WELCOME ADMIN!</h1>
+			</div>
+			<br />
+			<h3
+				style="background-color: grey; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;">Please
+				Select:</h3>
+			<br>
+
+
+
+
+			<div class="container" style="max-width: 800px;">
+				<div th:if="${reportAmount>0}">
+					<h1 th:if="${reportAmount!=1}"
+						th:text="${'YOU HAVE '+reportAmount+' NEW REPORTS!'}"></h1>
+					<h1 th:if="${reportAmount==1}"
+						th:text="${'YOU HAVE '+reportAmount+' NEW REPORT!'}"></h1>
+					<table class="table">
+						<thead>
+							<th></th>
+							<th>REASON</th>
+							<th>QUESTION</th>
+							<th>DATE</th>
+							<th>ACTION</th>
+							<th></th>
+						</thead>
+						<tbody>
+							<tr th:each="report, iStat:${reports}">
+								<td th:text="${iStat.index+1+'.'}"></td>
+								<td><h2 th:text="${report.reasonText}"></h2></td>
+								<td><table>
+										<tr>
+											<td><h2 th:text="${report.question.title}"></h2></td>
+										</tr>
+										<tr>
+											<td th:text="${report.question.answers[0].content}"></td>
+										</tr>
+										<tr>
+											<td th:text="${report.question.answers[1].content}"></td>
+										</tr>
+										<tr>
+											<td th:text="${report.question.answers[2].content}"></td>
+										</tr>
+										<tr>
+											<td th:text="${report.question.answers[3].content}"></td>
+										</tr>
+									</table></td>
+								<td th:text="${report.reportDate}"></td>
+								<td>
+									<form th:action="@{'/deletequestion'}">
+										<input type="hidden" name="questionid"
+											th:value="${report.question.questionid}" />
+										<button class="btn btn-danger" type="submit">DELETE</button>
+									</form>
+									<form th:action="@{'/dismissreport'}">
+										<input type="hidden" name="reportId"
+											th:value="${report.reportId}" />
+										<button class="btn btn-warning" type="submit">DISMISS</button>
+									</form>
+								</td>
+								<td></td>
+							</tr>
+						</tbody>
+
+					</table>
+				</div>
+				<div th:if="${reportAmount==0}">
+					<h1>NO NEW REPORTS!</h1>
+					<br>
+					<br>
+				</div>
+			</div>
+			<form th:action="@{/logout}" method="POST">
+				<button class="btn btn-vali btn-danger btn-block" type="submit">
+					LOGOUT</button>
+			</form>
+		</div>
+	</div>
+
+
+
+</body>
+
+</html>

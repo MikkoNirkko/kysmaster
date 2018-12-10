@@ -3,6 +3,7 @@ package com.mikkonirkko.kysmaster.model;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "question_id")
-	private Long questionid;
+	public Long questionid;
 	
 	@Column(name = "question_title")
 	@NotNull
@@ -30,9 +31,16 @@ public class Question {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
+	
+	@Column
+    @ElementCollection(targetClass=Answer.class)
+	public List<Answer> answers;
+	
+	
 	public Question() {
 		this.title="";
 		this.category=null;
+		this.answers=null;
 	}
 	
 	public Question(String title, Category category) {
@@ -62,6 +70,16 @@ public class Question {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	
+	
+
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
 
 	@Override

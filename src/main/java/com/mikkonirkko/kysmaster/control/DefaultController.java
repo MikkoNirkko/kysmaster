@@ -6,17 +6,25 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mikkonirkko.kysmaster.model.Answer;
 import com.mikkonirkko.kysmaster.model.Question;
 import com.mikkonirkko.kysmaster.model.QuestionForm;
+import com.mikkonirkko.kysmaster.model.Report;
 import com.mikkonirkko.kysmaster.model.Result;
+import com.mikkonirkko.kysmaster.model.User;
+import com.mikkonirkko.kysmaster.repository.AnswerRepository;
 import com.mikkonirkko.kysmaster.repository.CategoryRepository;
 import com.mikkonirkko.kysmaster.repository.QuestionRepository;
+import com.mikkonirkko.kysmaster.repository.ReportRepository;
 import com.mikkonirkko.kysmaster.repository.ResultRepository;
+import com.mikkonirkko.kysmaster.repository.UserRepository;
 import com.mikkonirkko.kysmaster.service.AnswerService;
 import com.mikkonirkko.kysmaster.service.QuestionService;
 import com.mikkonirkko.kysmaster.service.ResultService;
@@ -34,7 +42,16 @@ public class DefaultController {
 	private AnswerService answerService;
 	
 	@Autowired
+	private AnswerRepository answerRepository;
+	
+	@Autowired
 	private ResultRepository resultRepository;
+	
+	@Autowired
+	private ReportRepository reportRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private QuestionService questionService;
@@ -44,10 +61,52 @@ public class DefaultController {
 	
 	@RequestMapping("/")
 	public String index(HttpServletRequest request) {
+		List<User> users= (List<User>) userRepository.findAll();
+		if(users.size()==0) {
+			return "redirect:/signup";
+		}else {
 		int idx = (int) (Math.random() * 1000000);
 		Long quizKey = new Long(idx);
 		request.getSession().setAttribute("quizKey", quizKey);
 		return "index";
+		}
+	}
+	
+	@Secured("ADMIN")
+	@RequestMapping("/adminpage")
+	public String adminPage(Model model) {
+		Boolean no = new Boolean(false);
+		model.addAttribute("reportAmount", reportRepository.countBySeen(no));
+		List<Report> reports = reportRepository.findBySeen(no);
+		for(Report report:reports) {
+			Question que = report.getQuestion();
+			List<Answer> answers = answerRepository.findByQuestionId(que.getQuestionid());
+			que.setAnswers(answers);
+			report.setQuestion(que);
+		}
+		model.addAttribute("reports", reports);
+		return "adminpage";
+	}
+	
+	@Secured("ADMIN")
+	@Transactional
+	@RequestMapping("/deletequestion")
+	public String deleteQuestion(@RequestParam Long questionid) {
+		Question que = questionRepository.findByQuestionid(questionid);
+		reportRepository.deleteByQuestion(que);
+		answerRepository.deleteByQuestionId(questionid);
+		questionRepository.delete(que);
+		return "redirect:/adminpage";
+	}
+	
+	@Secured("ADMIN")
+	@Transactional
+	@RequestMapping("/dismissreport")
+	public String dismissReport(@RequestParam Long reportId) {
+		Report report = reportRepository.findByReportId(reportId);
+		report.setSeen(new Boolean(true));
+		reportRepository.save(report);
+		return "redirect:/adminpage";
 	}
 
 	@RequestMapping("/new/")
@@ -57,7 +116,7 @@ public class DefaultController {
 		return "addquestion";
 	}
 	
-	@RequestMapping("/login/")
+	@RequestMapping("/login")
 	public String adminLogin(Model model) {
 		return "login";
 	}

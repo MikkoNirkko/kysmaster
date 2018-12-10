@@ -12,4 +12,8 @@ import com.mikkonirkko.kysmaster.model.Report;
 @Repository
 public interface ReportRepository extends CrudRepository<Report, Long>{
 	Report findByReportId(Long reportId);
+	Long countBySeen(Boolean seen);
+	List<Report> findBySeen(Boolean seen);
+	Long countByQuestion(Question question);
+	void deleteByQuestion(Question question);
 }

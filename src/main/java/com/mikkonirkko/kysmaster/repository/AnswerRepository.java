@@ -10,4 +10,5 @@ import com.mikkonirkko.kysmaster.model.Answer;
 @Repository
 public interface AnswerRepository extends CrudRepository<Answer, Long>{
 	List<Answer> findByQuestionId(Long questionId);
+	void deleteByQuestionId(Long questionId);
 }
