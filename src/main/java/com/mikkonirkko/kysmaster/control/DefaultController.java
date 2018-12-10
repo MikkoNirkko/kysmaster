@@ -18,13 +18,13 @@ import com.mikkonirkko.kysmaster.model.Question;
 import com.mikkonirkko.kysmaster.model.QuestionForm;
 import com.mikkonirkko.kysmaster.model.Report;
 import com.mikkonirkko.kysmaster.model.Result;
-import com.mikkonirkko.kysmaster.model.User;
+import com.mikkonirkko.kysmaster.model.Account;
 import com.mikkonirkko.kysmaster.repository.AnswerRepository;
 import com.mikkonirkko.kysmaster.repository.CategoryRepository;
 import com.mikkonirkko.kysmaster.repository.QuestionRepository;
 import com.mikkonirkko.kysmaster.repository.ReportRepository;
 import com.mikkonirkko.kysmaster.repository.ResultRepository;
-import com.mikkonirkko.kysmaster.repository.UserRepository;
+import com.mikkonirkko.kysmaster.repository.AccountRepository;
 import com.mikkonirkko.kysmaster.service.AnswerService;
 import com.mikkonirkko.kysmaster.service.QuestionService;
 import com.mikkonirkko.kysmaster.service.ResultService;
@@ -51,7 +51,7 @@ public class DefaultController {
 	private ReportRepository reportRepository;
 	
 	@Autowired
-	private UserRepository userRepository;
+	private AccountRepository accountRepository;
 
 	@Autowired
 	private QuestionService questionService;
@@ -61,8 +61,8 @@ public class DefaultController {
 	
 	@RequestMapping("/")
 	public String index(HttpServletRequest request) {
-		List<User> users= (List<User>) userRepository.findAll();
-		if(users.size()==0) {
+		List<Account> accounts= (List<Account>) accountRepository.findAll();
+		if(accounts.size()==0) {
 			return "redirect:/signup";
 		}else {
 		int idx = (int) (Math.random() * 1000000);
