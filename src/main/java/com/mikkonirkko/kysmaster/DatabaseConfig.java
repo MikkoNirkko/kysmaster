@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-@Configuration
+/*@Configuration
 public class DatabaseConfig {
     @Bean
     @Primary
@@ -17,4 +17,4 @@ public class DatabaseConfig {
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
-}
+}*/
