@@ -40,7 +40,6 @@ public class Question {
 	public Question() {
 		this.title="";
 		this.category=null;
-		this.answers=null;
 	}
 	
 	public Question(String title, Category category) {
