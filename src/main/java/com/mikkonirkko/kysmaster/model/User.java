@@ -2,7 +2,7 @@ package com.mikkonirkko.kysmaster.model;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name="user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
