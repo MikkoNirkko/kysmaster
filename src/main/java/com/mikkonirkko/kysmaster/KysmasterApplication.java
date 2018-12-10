@@ -1,13 +1,9 @@
 package com.mikkonirkko.kysmaster;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Component;
 
-import com.mikkonirkko.kysmaster.model.Category;
-import com.mikkonirkko.kysmaster.model.Question;
 import com.mikkonirkko.kysmaster.repository.CategoryRepository;
 import com.mikkonirkko.kysmaster.repository.QuestionRepository;
 
@@ -25,3 +21,6 @@ public class KysmasterApplication {
 	}
 	
 }
+
+
+
