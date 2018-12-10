@@ -1,5 +1,6 @@
 package com.mikkonirkko.kysmaster.control;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -126,8 +127,13 @@ public class DefaultController {
 		Long resultCount = resultRepository.count();
 		if(resultCount>0) {
 		List<Result> results = (List<Result>) resultRepository.findAll();
+		if(results.size()>9) {
 		List<Result> top10 = resultService.pickTen(results);
 		model.addAttribute("results", top10);
+		}else {
+			resultService.order(results);
+			model.addAttribute("results", "results");
+		}
 		return "leaderboard";
 		}else {
 			return "redirect:/";

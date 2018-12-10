@@ -33,4 +33,18 @@ public class ResultService {
 		
 		return top10;
 	}
+	
+	public List<Result> order(List<Result> results){
+		if(results.size()>1) {
+		Collections.sort(results, new Comparator<Result>() {
+			@Override
+			public int compare(Result result2, Result result1) {
+				return Double.compare(result1.getScore(), result2.getScore());
+			}
+		});
+		}
+		
+		
+		return results;
+	}
 }
