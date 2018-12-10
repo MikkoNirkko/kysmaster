@@ -1,8 +1,7 @@
 package com.mikkonirkko.kysmaster.model;
 
 import javax.persistence.*;
-
-@Entity(name="user")
+/*
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,4 +60,4 @@ public class User {
 		this.role = role;
 	}
 
-}
+}*/

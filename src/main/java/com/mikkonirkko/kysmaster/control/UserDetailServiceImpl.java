@@ -8,9 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.mikkonirkko.kysmaster.model.Account;
-import com.mikkonirkko.kysmaster.model.User;
 import com.mikkonirkko.kysmaster.repository.AccountRepository;
-import com.mikkonirkko.kysmaster.repository.UserRepository;
 
 
 /**

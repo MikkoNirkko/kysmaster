@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mikkonirkko.kysmaster.model.Account;
 import com.mikkonirkko.kysmaster.model.SignupForm;
-import com.mikkonirkko.kysmaster.model.User;
-import com.mikkonirkko.kysmaster.repository.UserRepository;
+import com.mikkonirkko.kysmaster.repository.AccountRepository;
 
 import java.util.List;
 
@@ -21,11 +21,11 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 	@Autowired
-    private UserRepository repository; 
+    private AccountRepository repository; 
 	
     @RequestMapping(value = "signup")
     public String addStudent(Model model){
-    	List<User> users= (List<User>) repository.findAll();
+    	List<Account> users= (List<Account>) repository.findAll();
 		if(users.size()==0) {
 			model.addAttribute("signupform", new SignupForm());
 	        return "signup";
@@ -50,7 +50,7 @@ public class UserController {
 		    	BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 		    	String hashPwd = bc.encode(pwd);
 	
-		    	User newUser = new User();
+		    	Account newUser = new Account();
 		    	newUser.setPasswordHash(hashPwd);
 		    	newUser.setUsername(signupForm.getUsername());
 		    	newUser.setRole("ADMIN");
