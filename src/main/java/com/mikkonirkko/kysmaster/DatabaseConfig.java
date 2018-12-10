@@ -1,4 +1,5 @@
-package com.mikkonirkko.kysmaster.service;
+package com.mikkonirkko.kysmaster;
+
 
 import javax.sql.DataSource;
 
