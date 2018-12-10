@@ -132,7 +132,7 @@ public class DefaultController {
 		model.addAttribute("results", top10);
 		}else {
 			resultService.order(results);
-			model.addAttribute("results", "results");
+			model.addAttribute("results", results);
 		}
 		return "leaderboard";
 		}else {
