@@ -18,7 +18,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 
-@Controller
+/*@Controller
 public class UserController {
 	@Autowired
     private AccountRepository repository; 
@@ -34,18 +34,11 @@ public class UserController {
 		}
     }	
     
-    /**
-     * Create new user
-     * Check if user already exists & form validation
-     * 
-     * @param signupForm
-     * @param bindingResult
-     * @return
-     */
+
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
     	if (!bindingResult.hasErrors()) { // validation errors
-    		if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // check password match		
+    		if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) {	
 	    		String pwd = signupForm.getPassword();
 		    	BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 		    	String hashPwd = bc.encode(pwd);
@@ -54,7 +47,7 @@ public class UserController {
 		    	newUser.setPasswordHash(hashPwd);
 		    	newUser.setUsername(signupForm.getUsername());
 		    	newUser.setRole("ADMIN");
-		    	if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
+		    	if (repository.findByUsername(signupForm.getUsername()) == null) {
 		    		repository.save(newUser);
 		    	}
 		    	else {
@@ -73,4 +66,4 @@ public class UserController {
     	return "redirect:/login";    	
     }    
     
-}
+}*/
