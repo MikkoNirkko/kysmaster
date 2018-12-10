@@ -123,10 +123,15 @@ public class DefaultController {
 	
 	@RequestMapping("/leaderboard")
 	public String leaderboard(Model model) {
+		Long resultCount = resultRepository.count();
+		if(resultCount>0) {
 		List<Result> results = (List<Result>) resultRepository.findAll();
 		List<Result> top10 = resultService.pickTen(results);
 		model.addAttribute("results", top10);
 		return "leaderboard";
+		}else {
+			return "redirect:/";
+		}
 	}
 
 	@RequestMapping("/savequestion")
@@ -140,6 +145,8 @@ public class DefaultController {
 
 	@RequestMapping("/play")
 	public String play(Model model, @RequestParam("winCount") Long winCount, HttpServletRequest request) {
+		Long qcount = questionRepository.count();
+		if(qcount>0) {
 		Question q = questionService.getRandomQuestion();
 		int idx = (int) (Math.random() * 1000000);
 		Long quizKey = new Long(idx);
@@ -151,6 +158,9 @@ public class DefaultController {
 		model.addAttribute("reported", 0);
 		request.getSession().setAttribute("active", 1);
 		return "game";
+		}else {
+			return "redirect:/new";
+		}
 	}
 
 
