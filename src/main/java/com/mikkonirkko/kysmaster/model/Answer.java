@@ -9,34 +9,34 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Answer {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private Long answerid;
-	
+
 	@NotNull
-	@Column(name="content")
+	@Column(name = "content")
 	private String content;
-	
+
 	@NotNull
-	@Column(name="correct")
+	@Column(name = "correct")
 	private Boolean correct;
-	
+
 	@NotNull
-	@Column(name="question_id")
+	@Column(name = "question_id")
 	private Long questionId;
-	
+
 	public Answer() {
-		this.content="";
-		this.correct=false;
-		this.questionId=null;
+		this.content = "";
+		this.correct = false;
+		this.questionId = null;
 	}
-	
+
 	public Answer(String content, Boolean correct, Long questionId) {
-		this.content=content;
-		this.correct=correct;
-		this.questionId=questionId;
+		this.content = content;
+		this.correct = correct;
+		this.questionId = questionId;
 	}
 
 	public Long getAnswerid() {
@@ -77,7 +77,4 @@ public class Answer {
 				+ questionId + "]";
 	}
 
-	
-	
-	
 }

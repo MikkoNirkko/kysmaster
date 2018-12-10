@@ -10,19 +10,19 @@ import javax.persistence.Id;
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="category_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "category_id")
 	private Long categoryId;
-	
-	@Column(name="category_name")
+
+	@Column(name = "category_name")
 	private String name;
-	
+
 	public Category() {
-		this.name="";
+		this.name = "";
 	}
-	
+
 	public Category(String name) {
-		this.name=name;
+		this.name = name;
 	}
 
 	public Long getCategoryId() {
@@ -45,5 +45,5 @@ public class Category {
 	public String toString() {
 		return "Category [categoryId=" + categoryId + ", name=" + name + "]";
 	}
-	
+
 }

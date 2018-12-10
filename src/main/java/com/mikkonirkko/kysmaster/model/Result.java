@@ -10,31 +10,31 @@ import javax.persistence.Id;
 
 @Entity
 public class Result {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="result_id")
+	@Column(name = "result_id")
 	private Long resultId;
-	
-	@Column(name="result_name")
+
+	@Column(name = "result_name")
 	private String name;
-	
-	@Column(name="result_score")
+
+	@Column(name = "result_score")
 	private Long score;
-	
-	@Column(name="result_date")
+
+	@Column(name = "result_date")
 	private Date date;
-	
+
 	public Result() {
-		this.name="";
-		this.score=null;
-		this.date=null;
+		this.name = "";
+		this.score = null;
+		this.date = null;
 	}
-	
+
 	public Result(String name, Long score, Date date) {
-		this.name=name;
-		this.score=score;
-		this.date=date;
+		this.name = name;
+		this.score = score;
+		this.date = date;
 	}
 
 	public Long getResultId() {
@@ -73,7 +73,5 @@ public class Result {
 	public String toString() {
 		return "Result [resultId=" + resultId + ", name=" + name + ", score=" + score + ", date=" + date + "]";
 	}
-	
-	
-	
+
 }

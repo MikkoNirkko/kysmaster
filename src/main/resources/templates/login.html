@@ -38,7 +38,7 @@
 			</div>
 			<br />
 			<div style="background-color: black; color: white;">
-			<h1 class="animated shake" >PLEASE LOG IN!</h1>
+				<h1 class="animated shake">PLEASE LOG IN!</h1>
 			</div>
 			<br />
 			<h3
@@ -49,21 +49,23 @@
 
 
 
-			<div class="container" style="max-width:800px;">
-						<form th:action="@{/login}" method="post">
-							<div>
-								<label> Username: <input type="text" name="username" class="form-control" />
-								</label>
-							</div>
-							<div>
-								<label> Password: <input type="password" name="password" class="form-control" />
-								</label>
-							</div>
-							<div>
-								<input type="submit" value="LOGIN" />
-							</div>
-						</form>
-						
+			<div class="container" style="max-width: 800px;">
+				<form th:action="@{/login}" method="post">
+					<div>
+						<label> Username: <input type="text" name="username"
+							class="form-control" />
+						</label>
+					</div>
+					<div>
+						<label> Password: <input type="password" name="password"
+							class="form-control" />
+						</label>
+					</div>
+					<div>
+						<input type="submit" value="LOGIN" />
+					</div>
+				</form>
+
 			</div>
 
 		</div>

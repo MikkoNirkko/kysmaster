@@ -23,7 +23,7 @@ public class UserController {
 	@Autowired
     private UserRepository repository; 
 	
-    @RequestMapping(value = "signup")
+    @RequestMapping(value = "signup") //Return the signup page if there are no user accounts, otherwise the front page will load.
     public String addStudent(Model model){
     	List<User> users= (List<User>) repository.findAll();
 		if(users.size()==0) {
@@ -34,15 +34,8 @@ public class UserController {
 		}
     }	
     
-    /**
-     * Create new user
-     * Check if user already exists & form validation
-     * 
-     * @param signupForm
-     * @param bindingResult
-     * @return
-     */
-    @RequestMapping(value = "saveuser", method = RequestMethod.POST)
+
+    @RequestMapping(value = "saveuser", method = RequestMethod.POST) //Save the new user with validation
     public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
     	if (!bindingResult.hasErrors()) { // validation errors
     		if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // check password match		

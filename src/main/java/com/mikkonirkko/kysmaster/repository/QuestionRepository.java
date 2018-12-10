@@ -9,8 +9,10 @@ import com.mikkonirkko.kysmaster.model.Category;
 import com.mikkonirkko.kysmaster.model.Question;
 
 @Repository
-public interface QuestionRepository extends CrudRepository<Question, Long>{
+public interface QuestionRepository extends CrudRepository<Question, Long> {
 	List<Question> findByCategory(Category category);
+
 	List<Question> findAll();
+
 	Question findByQuestionid(Long questionid);
 }

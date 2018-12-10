@@ -12,37 +12,32 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
 public class Question {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "question_id")
 	public Long questionid;
-	
+
 	@Column(name = "question_title")
 	@NotNull
 	private String title;
-	
-	
-	
+
 	@OneToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
-	
-	
+
 	@Column
-    @ElementCollection(targetClass=Answer.class)
+	@ElementCollection(targetClass = Answer.class)
 	public List<Answer> answers;
-	
-	
+
 	public Question() {
-		this.title="";
-		this.category=null;
-		this.answers=null;
+		this.title = "";
+		this.category = null;
+		this.answers = null;
 	}
-	
+
 	public Question(String title, Category category) {
 		this.title = title;
 		this.category = category;
@@ -71,8 +66,6 @@ public class Question {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
-	
 
 	public List<Answer> getAnswers() {
 		return answers;
@@ -86,7 +79,5 @@ public class Question {
 	public String toString() {
 		return "Question [questionid=" + questionid + ", title=" + title + ", category=" + category + "]";
 	}
-	
-	
-	
+
 }

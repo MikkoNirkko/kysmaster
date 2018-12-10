@@ -38,7 +38,7 @@
 			</div>
 			<br />
 			<div style="background-color: black; color: white;">
-			<h1 class="animated shake" >CREATE A USER!</h1>
+				<h1 class="animated shake">CREATE A USER!</h1>
 			</div>
 			<br />
 			<h3
@@ -49,25 +49,31 @@
 
 
 
-			<div class="container" style="max-width:800px;">
-						<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
-							<div>
-								<label> USERNAME: <input type="text" th:field="*{username}" class="form-control" /></label>
-								<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">USERNAME ERROR!</p>
-							</div>
+			<div class="container" style="max-width: 800px;">
+				<form th:object="${signupform}" th:action="@{/saveuser}" action="#"
+					method="post">
+					<div>
+						<label> USERNAME: <input type="text"
+							th:field="*{username}" class="form-control" /></label>
+						<p th:if="${#fields.hasErrors('username')}"
+							th:errors="*{username}">USERNAME ERROR!</p>
+					</div>
 
-							<div>
-								<label> PASSWORD:<input type="password" th:field="*{password}" class="form-control" /></label>
-								<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">PASSWORD ERROR!</p>
-							</div>
-							<div>
-								<label> PLEASE WRITE THE PASSWORD AGAIN!: <input type="password" th:field="*{passwordCheck}" class="form-control" /></label>
-								<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">PASSWORDS DON'T MATCH!</p>
-							</div>
-							<input type="submit" class="btn btn-success"
-							 value="CREATE USER!"></input>
-						</form>
-						
+					<div>
+						<label> PASSWORD:<input type="password"
+							th:field="*{password}" class="form-control" /></label>
+						<p th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}">PASSWORD ERROR!</p>
+					</div>
+					<div>
+						<label> PLEASE WRITE THE PASSWORD AGAIN!: <input
+							type="password" th:field="*{passwordCheck}" class="form-control" /></label>
+						<p th:if="${#fields.hasErrors('passwordCheck')}"
+							th:errors="*{passwordCheck}">PASSWORDS DON'T MATCH!</p>
+					</div>
+					<input type="submit" class="btn btn-success" value="CREATE USER!"></input>
+				</form>
+
 			</div>
 
 		</div>

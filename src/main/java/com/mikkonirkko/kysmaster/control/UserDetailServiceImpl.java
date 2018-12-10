@@ -11,9 +11,7 @@ import com.mikkonirkko.kysmaster.model.User;
 import com.mikkonirkko.kysmaster.repository.UserRepository;
 
 
-/**
- * This class is used by spring security to authenticate and authorize user
- **/
+//The service for managing user data and logging in
 @Service
 public class UserDetailServiceImpl implements UserDetailsService  {
 	private final UserRepository repository;

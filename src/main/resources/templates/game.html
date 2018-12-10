@@ -37,10 +37,13 @@
 				</a>
 			</div>
 			<br />
-			<div th:if="${reported==0}" style="background-color: black; color: white;">
+			<div th:if="${reported==0}"
+				style="background-color: black; color: white;">
 				<h1>LET'S GO!</h1>
 			</div>
-			<div th:if="${reported==1}" style="background-color: black; color: white;" class="animated2 tada">
+			<div th:if="${reported==1}"
+				style="background-color: black; color: white;"
+				class="animated2 tada">
 				<h1>THANK YOU FOR YOUR REPORT!!!</h1>
 			</div>
 			<br />
@@ -84,12 +87,13 @@
 						<input type="hidden" name="quizKey" th:value="${quizKey}" /> <input
 							type="hidden" name="winCount" th:value="${winCount}" /> <input
 							type="hidden" name="questionId" th:value="${question.questionid}" />
-							<label for="sel1">Please Choose a Reason:</label> 
-							<select class="form-control" id="sel1" name="reason" th:required="required">
-						<option value="1" name="reason">It's Offensive!</option>
-						<option value="2" name="reason">It's Impossible!</option>
-						<option value="3" name="reason">It's Too Obvious!</option>
-					</select>
+						<label for="sel1">Please Choose a Reason:</label> <select
+							class="form-control" id="sel1" name="reason"
+							th:required="required">
+							<option value="1" name="reason">It's Offensive!</option>
+							<option value="2" name="reason">It's Impossible!</option>
+							<option value="3" name="reason">It's Too Obvious!</option>
+						</select>
 						<button class="btn btn-danger btn-block btn-answer" type="submit">SUBMIT</button>
 					</form>
 

@@ -16,30 +16,21 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private UserDetailServiceImpl userDetailsService;	
-	
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-        .authorizeRequests().antMatchers("/css/**", "/img/*", "/", "/game/", "/nextquestion", "/results", "/new/", "/leaderboard/", "/submit", "/savequestion", "/play/", "/report", "/api/*").permitAll()
-        .and()
-        .authorizeRequests().antMatchers("/signup", "/saveuser").permitAll()
-        .and()
-        .authorizeRequests().anyRequest().authenticated()
-        .and()
-      .formLogin()
-          .loginPage("/login")
-          .defaultSuccessUrl("/adminpage")
-          .permitAll()
-          .and()
-      .logout()
-          .permitAll()
-        .logoutSuccessUrl("/");
-    }
-    
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+	@Autowired
+	private UserDetailServiceImpl userDetailsService;
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.antMatchers("/css/**", "/img/*", "/", "/game/", "/nextquestion", "/results", "/new/", "/leaderboard/",
+						"/submit", "/savequestion", "/play/", "/report", "/api/*")
+				.permitAll().and().authorizeRequests().antMatchers("/signup", "/saveuser").permitAll().and()
+				.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
+				.defaultSuccessUrl("/adminpage").permitAll().and().logout().permitAll().logoutSuccessUrl("/");
+	}
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+	}
 }

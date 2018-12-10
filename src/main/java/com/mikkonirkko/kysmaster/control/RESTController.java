@@ -23,7 +23,7 @@ public class RESTController {
 	@Autowired
 	private QuestionService questionService;
 	
-	@RequestMapping("/question")
+	@RequestMapping("/question") //Return a random question as JSON
 	public Question fetchQuestion() {
 		Question q = questionService.getRandomQuestion();
 		List<Answer> answers = answerRepository.findByQuestionId(q.getQuestionid());

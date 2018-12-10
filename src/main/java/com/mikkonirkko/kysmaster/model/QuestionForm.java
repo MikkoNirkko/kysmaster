@@ -1,34 +1,33 @@
 package com.mikkonirkko.kysmaster.model;
 
 public class QuestionForm {
-	
+
 	private Long categoryId;
 	private String title;
 	private String correctAnswer;
 	private String falseAnswer1;
 	private String falseAnswer2;
 	private String falseAnswer3;
-	
+
 	public QuestionForm() {
-		this.categoryId=null;
-		this.title="";
-		this.correctAnswer="";
-		this.falseAnswer1="";
-		this.falseAnswer2="";
-		this.falseAnswer3="";
-	}
-	
-	public QuestionForm(Long categoryId,String title, String correctAnswer, String falseAnswer1, String falseAnswer2, String falseAnswer3) {
-		this.categoryId=categoryId;
-		this.title=title;
-		this.correctAnswer=correctAnswer;
-		this.falseAnswer1=falseAnswer1;
-		this.falseAnswer2=falseAnswer2;
-		this.falseAnswer3=falseAnswer3;
+		this.categoryId = null;
+		this.title = "";
+		this.correctAnswer = "";
+		this.falseAnswer1 = "";
+		this.falseAnswer2 = "";
+		this.falseAnswer3 = "";
 	}
 
-	
-	
+	public QuestionForm(Long categoryId, String title, String correctAnswer, String falseAnswer1, String falseAnswer2,
+			String falseAnswer3) {
+		this.categoryId = categoryId;
+		this.title = title;
+		this.correctAnswer = correctAnswer;
+		this.falseAnswer1 = falseAnswer1;
+		this.falseAnswer2 = falseAnswer2;
+		this.falseAnswer3 = falseAnswer3;
+	}
+
 	public Long getCategoryId() {
 		return categoryId;
 	}
@@ -84,10 +83,4 @@ public class QuestionForm {
 				+ "]";
 	}
 
-
-	
-
-	
-	
-	
 }

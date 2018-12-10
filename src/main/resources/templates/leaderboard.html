@@ -33,43 +33,43 @@
 	<div>
 		<div class="maincontent">
 			<div class="d-flex justify-content-center">
-			<a th:href="@{/}">
-				<img th:src="@{/img/logo.png}" alt="logo" />
+				<a th:href="@{/}"> <img th:src="@{/img/logo.png}" alt="logo" />
 				</a>
 			</div>
 			<br />
 			<div style="background-color: black; color: white;">
-			<h1 class="animated shake" >LEADERBOARD!</h1>
+				<h1 class="animated shake">LEADERBOARD!</h1>
 			</div>
 			<br />
 			<h3
-				style="background-color: grey; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;">TOP 10:</h3>
+				style="background-color: grey; color: white; border-radius: 10px; width: 50%; max-width: 200px; margin: auto;">TOP
+				10:</h3>
 			<br>
 
 
 
 
-			<div class="container" style="max-width:800px;">
-			
-			<table class="table">
-			<thead>
-			<th></th>
-			<th>NAME</th>
-			<th>SCORE</th>
-			<th>DATE</th>
-			</thead>
-			<tbody>
-			<tr th:each="result, iStat:${results}">
-			<td th:text="${iStat.index+1+'.'}"></td>
-			<td th:text="${result.name}"></td>
-			<td th:text="${result.score}"></td>	
-			<td th:text="${result.date}"></td>	
-			</tr>
-			</tbody>
-			
-			</table>
-			
-			
+			<div class="container" style="max-width: 800px;">
+
+				<table class="table">
+					<thead>
+						<th></th>
+						<th>NAME</th>
+						<th>SCORE</th>
+						<th>DATE</th>
+					</thead>
+					<tbody>
+						<tr th:each="result, iStat:${results}">
+							<td th:text="${iStat.index+1+'.'}"></td>
+							<td th:text="${result.name}"></td>
+							<td th:text="${result.score}"></td>
+							<td th:text="${result.date}"></td>
+						</tr>
+					</tbody>
+
+				</table>
+
+
 			</div>
 
 		</div>
