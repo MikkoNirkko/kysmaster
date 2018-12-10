@@ -32,8 +32,7 @@ public class Question {
 	private Category category;
 	
 	
-	@Column
-    @ElementCollection(targetClass=Answer.class)
+	
 	public List<Answer> answers;
 	
 	
